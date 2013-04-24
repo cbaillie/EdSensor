@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/chris/Documents/Java/lib/fuseki-server-0.2.6.jar"/>
+	<classpathentry kind="lib" path="/Users/chris/Documents/Java/lib/jcoord-1.0.jar"/>
+	<classpathentry kind="lib" path="/Users/chris/Documents/Java/lib/jena-core-2.10.0.jar"/>
+	<classpathentry kind="lib" path="/Users/chris/Documents/Java/lib/SPINReasoningModule-3.0.jar"/>
+	<classpathentry kind="lib" path="/Users/chris/Documents/Java/lib/SPIN 1.3/spin-1.3.0.jar"/>
+	<classpathentry kind="lib" path="/Users/chris/Documents/Java/lib/json-lib-2.3-jdk15.jar"/>
+	<classpathentry kind="lib" path="/Users/chris/Documents/Java/lib/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="/Users/chris/Documents/Java/lib/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="/Users/chris/Documents/Java/lib/mysql-connector-java-5.1.22-bin.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
