@@ -104,18 +104,11 @@ public class Observation implements Comparable<Observation> {
 		return Long.parseLong(time);
 	}
 	
-	public String getModel()
-	{
-		String model = "";
-		
-		return model;
-	}
-	
 	private String parseTime(String timeStr)
 	{
 		try
 		{
-			String[] arr = timeStr.split(" ");		
+			String[] arr = timeStr.split("\\s");		
 			String date = arr[0];
 			String time = arr[1];
 			
@@ -180,7 +173,7 @@ public class Observation implements Comparable<Observation> {
 		sb.append("\t<" + observationUri + "> <http://purl.oclc.org/NET/ssnx/ssn#observedBy> <" + NS + "Sensor/" + ObservationType.lookup(property) + "> . \n");
 		sb.append("\t<" + observationUri + "> <http://purl.oclc.org/NET/ssnx/ssn#observedProperty> <" + NS + "Property/" + ObservationType.lookup(property) + "> . \n");
 		sb.append("\t<" + observationUri + "> <http://purl.oclc.org/NET/ssnx/ssn#observationResultTime> " + time + " . \n");
-		sb.append("\t<" + observationUri + "> <http://purl.oclc.org/NET/ssnx/ssn#observationServerTime> " + (System.currentTimeMillis() / 1000) + " . \n\n");
+		sb.append("\t<" + observationUri + "> <http://purl.oclc.org/NET/ssnx/ssn#observationServerTime> " + System.currentTimeMillis() + " . \n\n");
 		sb.append("\t<" + observationUri + "> <http://dtp-126.sncs.abdn.ac.uk/quality/CarSensor/Event> \"" + event + "\" . \n\n");
 		
 		//SensorOutput
