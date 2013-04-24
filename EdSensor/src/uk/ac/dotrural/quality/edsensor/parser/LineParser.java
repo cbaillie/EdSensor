@@ -6,6 +6,8 @@ import uk.ac.dotrural.quality.edsensor.observation.*;
 
 public class LineParser {
 	
+	private int count = 0;
+	
 	public ArrayList<Observation> parse(String line)
 	{
 		ArrayList<Observation> observations = new ArrayList<Observation>();
@@ -46,7 +48,7 @@ public class LineParser {
 			//time = date.trim() + " " + time.trim();
 			String time = date.trim();
 			
-			if(!time.equals(" "))
+			if(!time.equals(" ") && (count == 9))
 			{
 				observations.add(new AccelerometerObservation(ObservationType.ACCELERATION, "X", time, avgX, event));
 				observations.add(new AccelerometerObservation(ObservationType.ACCELERATION, "Y", time, avgY, event));
@@ -56,7 +58,9 @@ public class LineParser {
 				observations.add(new GPSObservation(ObservationType.GPS, time, lat, lon, sat, prec, event));
 				observations.add(new AltitudeObservation(ObservationType.ALTITUDE, time, alt, sat, event));
 				observations.add(new SpeedObservation(ObservationType.SPEED, time, speed, event));
-			}
+				count = 0;
+			} else
+				count++;
 		}
 		catch(ArrayIndexOutOfBoundsException aex)
 		{

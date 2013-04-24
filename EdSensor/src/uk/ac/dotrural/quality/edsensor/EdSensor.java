@@ -9,7 +9,7 @@ import uk.ac.dotrural.quality.edsensor.sparql.Updater;
 
 public class EdSensor {
 	
-	private final String file = "CoastalWalk";
+	private final String file = "WeatherStation";
 	private final String filename = file + ".csv";
 	private final String filepath = "resource/" + filename;
 	
@@ -19,6 +19,8 @@ public class EdSensor {
 	private final String endpoint = storename.concat("/statements");
 	
 	private int querySent = 0;
+	
+	private boolean sendLocation = true;
 	
 	ArrayList<Observation> observations;
 	
@@ -56,9 +58,10 @@ public class EdSensor {
 		System.out.println("== Log File Read ==");
 		lines.remove(0);
 		
+		LineParser lp = new LineParser();
+		
 		for(int i=0;i<lines.size();i++)
 		{
-			LineParser lp = new LineParser();
 			ArrayList<Observation> obs = lp.parse((String)lines.get(i));
 			for(int j=0;j<obs.size();j++)
 			{
@@ -84,8 +87,12 @@ public class EdSensor {
 					query = acc.getModel(NS);				
 					break;
 				case GPS:
-					GPSObservation gps = (GPSObservation)obs;
-					query = gps.getModel(NS);
+					if(sendLocation)
+					{
+						GPSObservation gps = (GPSObservation)obs;
+						query = gps.getModel(NS);
+						sendLocation = false;
+					}
 					break;
 				case ALTITUDE:
 					AltitudeObservation alt = (AltitudeObservation)obs;
@@ -95,8 +102,11 @@ public class EdSensor {
 					query = obs.getModel(NS);
 					break;
 				}
-				Updater update = new Updater();
-				update.sendUpdate(endpoint, this, query);
+				if(query.length() > 0)
+				{
+					Updater update = new Updater();
+					update.sendUpdate(endpoint, this, query);
+				}
 			}
 		}
 		catch(Exception ex)
