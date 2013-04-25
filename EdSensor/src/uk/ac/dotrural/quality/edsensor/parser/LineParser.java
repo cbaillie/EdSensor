@@ -48,18 +48,22 @@ public class LineParser {
 			time = date.trim() + " " + time.trim();
 			//String time = date.trim();
 			
-			if(!time.equals(" ") && (count == 2) && !time.contains("VALUE"))
+			if(count == 4)
 			{
-				observations.add(new AccelerometerObservation(ObservationType.ACCELERATION, "X", time, avgX, event));
-				observations.add(new AccelerometerObservation(ObservationType.ACCELERATION, "Y", time, avgY, event));
-				observations.add(new AccelerometerObservation(ObservationType.ACCELERATION, "Z", time, avgZ, event));
-				observations.add(new Observation(ObservationType.HUMIDITY, time, hum, event));
-				observations.add(new Observation(ObservationType.TEMPERATURE, time, temp, event));
-				observations.add(new GPSObservation(ObservationType.GPS, time, lat, lon, sat, prec, event));
-				observations.add(new AltitudeObservation(ObservationType.ALTITUDE, time, alt, sat, event));
-				observations.add(new SpeedObservation(ObservationType.SPEED, time, speed, event));
+				if(!time.equals(" ") && !time.contains("#VALUE"))
+				{
+					observations.add(new AccelerometerObservation(ObservationType.ACCELERATION, "X", time, avgX, event));
+					observations.add(new AccelerometerObservation(ObservationType.ACCELERATION, "Y", time, avgY, event));
+					observations.add(new AccelerometerObservation(ObservationType.ACCELERATION, "Z", time, avgZ, event));
+					observations.add(new Observation(ObservationType.HUMIDITY, time, hum, event));
+					observations.add(new Observation(ObservationType.TEMPERATURE, time, temp, event));
+					observations.add(new GPSObservation(ObservationType.GPS, time, lat, lon, sat, prec, event));
+					observations.add(new AltitudeObservation(ObservationType.ALTITUDE, time, alt, sat, event));
+					observations.add(new SpeedObservation(ObservationType.SPEED, time, speed, event));
+				}
 				count = 0;
-			} else
+			}
+			else
 				count++;
 		}
 		catch(ArrayIndexOutOfBoundsException aex)
