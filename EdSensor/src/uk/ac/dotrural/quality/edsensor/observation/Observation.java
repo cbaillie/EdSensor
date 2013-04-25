@@ -111,7 +111,7 @@ public class Observation implements Comparable<Observation> {
 			String[] arr = timeStr.split("\\s");		
 			String date = arr[0];
 			String time = arr[1];
-			
+				
 			//Sort date
 			String[] dates = date.split("/");
 			String day = dates[1];

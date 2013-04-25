@@ -9,7 +9,7 @@ import uk.ac.dotrural.quality.edsensor.sparql.Updater;
 
 public class EdSensor {
 	
-	private final String file = "WeatherStation";
+	private final String file = "TrainJourney";
 	private final String filename = file + ".csv";
 	private final String filepath = "resource/" + filename;
 	
@@ -91,7 +91,6 @@ public class EdSensor {
 					{
 						GPSObservation gps = (GPSObservation)obs;
 						query = gps.getModel(NS);
-						sendLocation = false;
 					}
 					break;
 				case ALTITUDE:
